@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: grey;
+        }
+        .two{
+            background-color: green;
+        }
+        .three{
+            background-color: lightblue;
+        }
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <p>{{ greetings }}</p>
+        <input @keyup.enter.prevent="greet(greetings + 'hello')" type="text" v-model="greetings">
+        <button v-on:click="toggleBox">Toggle box</button>
+        <div v-if="isVisible" class="box"></div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let app = Vue.createApp({
+            data: function() {
+                return {
+                    greetings: "Hello Vue 3!",
+                    isVisible: false,
+                }
+            },
+            methods: {
+                toggleBox() {
+                    this.isVisible = !this.isVisible;
+                    console.log("Toggled")
+                },
+                greet(greeting){
+                    console.log(greeting);
+                }
+            }
+        })
+
+        app.mount("#app")
+    </script>
+</body>
+</html>
